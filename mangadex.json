@@ -3,7 +3,7 @@
     "name": "MangaDex",
     "version": 1,
     "icon": "https://upload.wikimedia.org/wikipedia/commons/4/46/Mangadex_Logo.png",
-    "langs": ["en", "ja", "es", "fr", "de"],  // Supported languages
+    "langs": ["en", "ja", "es", "fr", "de"],
     "baseUrl": "https://api.mangadex.org",
     "search": {
         "method": "GET",
