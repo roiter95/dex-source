@@ -1,0 +1,58 @@
+{
+    "id": "mangadex",
+    "name": "MangaDex",
+    "version": 1,
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/4/46/Mangadex_Logo.png",
+    "langs": ["en", "ja", "es", "fr", "de"],  // Supported languages
+    "baseUrl": "https://api.mangadex.org",
+    "search": {
+        "method": "GET",
+        "url": "/manga",
+        "query": {
+            "title": "{query}",
+            "limit": 20,
+            "offset": 0,
+            "availableTranslatedLanguages": "{lang}"
+        },
+        "response": {
+            "results": "$.data",
+            "title": "$.attributes.title.{lang}",
+            "id": "$.id"
+        }
+    },
+    "mangaDetails": {
+        "method": "GET",
+        "url": "/manga/{id}",
+        "response": {
+            "title": "$.data.attributes.title",
+            "description": "$.data.attributes.description.{lang}",
+            "author": "$.data.attributes.author",
+            "artist": "$.data.attributes.artist",
+            "status": "$.data.attributes.status"
+        }
+    },
+    "chapters": {
+        "method": "GET",
+        "url": "/chapter",
+        "query": {
+            "manga": "{id}",
+            "limit": 500,
+            "offset": 0
+        },
+        "response": {
+            "results": "$.data",
+            "id": "$.id",
+            "title": "$.attributes.title",
+            "volume": "$.attributes.volume",
+            "chapter": "$.attributes.chapter"
+        }
+    },
+    "pages": {
+        "method": "GET",
+        "url": "/at-home/server/{id}",
+        "response": {
+            "results": "$.chapter.data",
+            "baseUrl": "$.baseUrl"
+        }
+    }
+}
